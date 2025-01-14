@@ -12,7 +12,9 @@ use App\Http\Middleware\role;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', function () {
+        return redirect('/login');
+    });
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login/process', [AuthController::class, 'loginProcess'])->name('login-process');
 
