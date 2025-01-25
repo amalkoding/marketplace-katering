@@ -16,10 +16,12 @@
 
     @include('includes.navbar')
 
-    <main class="container-lg mt-3">
+    <main class="container-lg mt-3 min-vh-100">
         @include('includes.header')
         @yield('content')
     </main>
+
+    @include('includes.footer')
 
     @include('includes.scripts')
     @stack('scripts')

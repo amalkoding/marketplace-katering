@@ -11,7 +11,7 @@
     @stack('styles')
 </head>
 
-<body class="bg-dark">
+<body class="bg-light">
     @yield('content')
 
     @include('includes.scripts')

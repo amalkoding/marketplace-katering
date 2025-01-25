@@ -1,74 +1,37 @@
 @extends('app.main')
 
-@section('title','Dashboard')
-@section('description','Selamat datang di halaman dashboard')
+@section('title', 'Dashboard')
+@section('description', 'Selamat datang di halaman dashboard')
 
 @section('content')
-@if(auth()->user()->role=="merchant")
+@if(auth()->user()->role == "admin")
 <div class="row mt-5">
     <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
-                    <div class="ms-2 me-4">
-                        <i class="bi bi-list-ul fs-1 text-dark"></i>
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-1 mb-3">
+                    <div class="icon-container py-1 px-3 rounded">
+                        <i class="bi bi-person fs-3"></i>
                     </div>
                     <div>
-                        <h5 class="card-title d-flex align-items-center">
-                            Total Menu
+                        <p class="fs-6 mb-0">Total User</p>
+                        <h5 class="fw-bold mb-0">
+                            {{ App\Models\User::whereNot('role', 'admin')->count() }} User
                         </h5>
-                        <p class="card-text fs-3 fw-bold">
-                            {{ $totalMenus }}
-                        </p>
                     </div>
                 </div>
-                <a href="{{ route('menu.index') }}" class="btn btn-dark btn-sm">Lihat</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
-                    <div class="ms-2 me-4">
-                        <i class="bi bi-cart fs-1 text-dark"></i>
-                    </div>
-                    <div>
-                        <h5 class="card-title d-flex align-items-center">
-                            Total Order
-                        </h5>
-                        <p class="card-text fs-3 fw-bold">
-                            {{ $totalOrders }}
-                        </p>
-                    </div>
-                </div>
-                <a href="{{ route('order.index') }}" class="btn btn-dark btn-sm">Lihat</a>
+                <a href="{{ route('user.index') }}"
+                    class="btn btn-primary w-100 d-flex align-items-center justify-content-between">
+                    <span>Lihat Detail</span>
+                    <i class="bi bi-arrow-right"></i> <!-- Icon panah -->
+                </a>
             </div>
         </div>
     </div>
 </div>
-@elseif(auth()->user()->role == "customer")
-<div class="row mt-5">
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
-                    <div class="ms-2 me-4">
-                        <i class="bi bi-cart fs-1 text-dark"></i>
-                    </div>
-                    <div>
-                        <h5 class="card-title d-flex align-items-center">
-                            Total Order Customer
-                        </h5>
-                        <p class="card-text fs-3 fw-bold">
-                            {{ $totalOrderCustomers }}
-                        </p>
-                    </div>
-                </div>
-                <a href="{{ route('order-customer.index') }}" class="btn btn-dark btn-sm">Lihat</a>
-            </div>
-        </div>
-    </div>
-</div>
+@elseif(auth()->user()->role == "premium")
+<!-- Konten untuk premium -->
+@elseif(auth()->user()->role == "user")
+<!-- Konten untuk user -->
 @endif
 @endsection

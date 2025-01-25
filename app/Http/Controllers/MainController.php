@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,13 +9,7 @@ class MainController extends Controller
 {
     public function dashboard()
     {
-        $totalMenus = Menu::with(['user'])->where('user_id', auth()->user()->id)->count();
-        $totalOrders = Order::with(['user', 'menu'])->whereHas('menu', function ($query) {
-            $query->where('user_id', auth()->user()->id);
-        })->count();
-        $totalOrderCustomers = Order::with(['user', 'menu'])->where('user_id', auth()->user()->id)->count();
-
-        return view('pages.dashboard', compact('totalMenus', 'totalOrders', 'totalOrderCustomers'));
+        return view('pages.dashboard');
     }
 
     public function profile()

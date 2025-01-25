@@ -8,16 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if(session('success'))
 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
-    <div id="successToast"
-        class="toast align-items-center {{ Route::is('login') || Route::is('register') ? 'text-bg-white' : 'text-bg-dark' }} border-0"
-        role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="successToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive"
+        aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body">
                 {{ session('success') }}
             </div>
-            <button type="button"
-                class="btn-close {{ Route::is('login') || Route::is('register') ? 'btn-close-dark' : 'btn-close-white' }} me-2 m-auto"
-                data-bs-dismiss="toast" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
         </div>
     </div>
 </div>
@@ -31,14 +29,14 @@
 @if(session('error'))
 <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
     <div id="errorToast"
-        class="toast align-items-center {{ Route::is('login') || Route::is('register') ? 'text-bg-white' : 'text-bg-dark' }} border-0"
+        class="toast align-items-center {{ Route::is('login') || Route::is('register') ? 'text-bg-white' : 'text-bg-primary' }} border-0"
         role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body">
                 {{ session('error') }}
             </div>
             <button type="button"
-                class="btn-close {{ Route::is('login') || Route::is('register') ? 'btn-close-dark' : 'btn-close-white' }} me-2 m-auto"
+                class="btn-close {{ Route::is('login') || Route::is('register') ? 'btn-close-primary' : 'btn-close-white' }} me-2 m-auto"
                 data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
@@ -52,7 +50,17 @@
 @endif
 <script>
     $(document).ready(function() {
-        $('#datatable').DataTable();
+        $('#datatable').DataTable({
+            "pagingType": "full_numbers",
+            "language": {
+                "paginate": {
+                    "first": '<i class="bi bi-chevron-double-left"></i>',
+                    "previous": '<i class="bi bi-chevron-left"></i>',
+                    "next": '<i class="bi bi-chevron-right"></i>',
+                    "last": '<i class="bi bi-chevron-double-right"></i>'
+                }
+            },
+        });
     });
 </script>
 <script>
@@ -65,8 +73,8 @@
             confirmButtonText: 'Ya, hapus!',
             cancelButtonText: 'Batal',
             customClass: {
-                confirmButton: 'btn btn-dark',
-                cancelButton: 'btn btn-outline-dark'
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-outline-primary'
             }
         }).then((result) => {
             if (result.isConfirmed) {

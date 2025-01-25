@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="card" style="width: 100%; max-width: 400px;">
+    <div class="card border-0 shadow-sm" style="width: 100%; max-width: 400px;">
         <div class="card-body">
             <h5 class="card-title text-center mb-4">Login</h5>
 
@@ -33,13 +33,12 @@
                     <label class="form-check-label" for="remember">Remember me</label>
                 </div>
 
-                <button type="submit" class="btn btn-dark w-100">Login</button>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
 
-            <!-- Link Register -->
             <div class="text-center mt-3">
                 <p class="mb-0">Belum punya akun? <a href="{{ route('register') }}"
-                        class="text-dark fw-semibold">Register di sini</a></p>
+                        class="text-primary fw-semibold">Register di sini</a></p>
             </div>
         </div>
     </div>
